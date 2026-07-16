@@ -17,7 +17,7 @@
 <header class="header">
     <div class="header__container container">
         <div class="header__body">
-             <?php if(is_front_page() || is_home()) : ?>
+            <?php if(is_front_page() || is_home()) : ?>
                 <figure class="header__logo">
                     <?php if($logo_file && $logo_ext === 'svg') :?>
                         <?= $logo_svg;?>
