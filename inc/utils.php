@@ -38,7 +38,7 @@ function util_generateMenus($menu, $class = 'menu', $parentClass = 'menu', $dept
 
         echo "<li class='{$liClass}'>";
             if($element['item']->url !== '#') {
-                echo "<a href='{$element['item']->url}' class='{$linkClass}'>";
+                echo "<a href='{$element['item']->url}' class='{$linkClass}' data-fsc-scroll>";
             }
 
             if($element['children']) {

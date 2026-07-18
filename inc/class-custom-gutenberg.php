@@ -11,12 +11,12 @@ class Custom_Gutenberg {
         }
         $this->theme_id = $theme_id;
 
-        $this->block_category = 'block';
+        $this->block_category = 'blocks';
 
         $this->blocks = [
-            'custom-title' => [
+            'title' => [
                 'title' => __('Title', $this->theme_id),
-                'mode' => 'edit'
+                'mode' => 'preview'
             ],
             'custom-text' => [
                 'title' => __('Text', $this->theme_id),
@@ -26,6 +26,9 @@ class Custom_Gutenberg {
             ],
             'custom-button' => [
                 'title' => __('Button Link', $this->theme_id),
+            ],
+            'custom-slider' => [
+                'title' => __('Slider', $this->theme_id),
             ],
         ];
 
@@ -38,7 +41,7 @@ class Custom_Gutenberg {
         
     }
     public function mytheme_gutenberg_editor_assets() {
-        wp_enqueue_style('mytheme-editor-style', get_template_directory_uri() . '/assets/styles/css/editor-style.css', array(), wp_get_theme()->get('Version'));
+        // wp_enqueue_style('mytheme-editor-style', get_template_directory_uri() . '/assets/styles/css/editor-style.css', array(), wp_get_theme()->get('Version'));
     }
 
     public function change_standart_tinymce_toolbal($toolbars) {
@@ -79,14 +82,14 @@ class Custom_Gutenberg {
                 'icon' => null
             ],
             [
-                'slug' => 'block',
+                'slug' => $this->block_category,
                 'title' => __('Block', $this->theme_id),
                 'icon' => null
             ]
         ];
 
         $categories = array_filter($categories, function($cat) {
-            return $cat['slug'] !== 'block' && $cat['slug'] !== 'section';
+            return $cat['slug'] !== $this->block_category && $cat['slug'] !== 'section';
         });
 
         return array_merge($custom, $categories);
@@ -128,8 +131,9 @@ class Custom_Gutenberg {
             }
         } else $has_content = true;
 
+        
         if($block['category'] === $this->block_category) {
-            $template_file = get_template_directory() . "/template-parts/gutenberg/blocks/{$name}.php";
+            $template_file = get_template_directory() . "/template-parts/gutenberg/{$this->block_category}/{$name}.php";
         }
         else if($block['category'] === $this->section_category) {
             $template_file = get_template_directory() . "/template-parts/gutenberg/sections/{$name}.php";

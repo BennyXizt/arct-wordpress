@@ -8,6 +8,7 @@ wp_get_attachment_image($fields['image']['ID'], 'full', false, ['class'=>'']); /
 get_theme_mod('CustomizeSettingsID'); // get value from customizer
 get_template_directory(''); // path to a file
 get_template_directory_uri(''); // link to a file
+htmlspecialchars(); // show pure text from html
 
 // get curr page link
 global $wp;

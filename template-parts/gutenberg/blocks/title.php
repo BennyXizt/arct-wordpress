@@ -23,11 +23,13 @@
         ];
     }
 
-    $color = !empty($fields['color']) ? 'style="color: '. $fields['color'] .'"' : '';
+    $styles = !empty($fields['color']) ? 'style="color: '. $fields['color'] .'"' : '';
 ?>
 
+<div style="padding: 30px">
 <?php if(!empty($fields['title'])) : ?>
-    <<?=$fields['type']?> <?= acf_inline_toolbar_editing_attrs(['title']); ?>>
+    <<?=$fields['type']?> <?= acf_inline_toolbar_editing_attrs(['title']); ?> <?=$styles?>>
         <?= $fields['title'] ?>
     </<?=$fields['type']?>>
 <?php endif; ?>
+</div>
